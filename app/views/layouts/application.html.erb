@@ -27,7 +27,7 @@
       <div class="buttons">
         <% if member_signed_in? %>
           <%= link_to "Post", new_post_path, class: "button is-primary" %>
-          <%= link_to current_member.email, "#", class: "button is-light" %>
+          <%= link_to current_member.username, "#", class: "button is-light" %>
           <%= link_to "Sign out", destroy_member_session_path, method: :delete, class: "button is-info is-light" %>
         <% else %>
             <%= link_to "Sign in", new_member_session_path, class: "button is-primary" %>

@@ -6,4 +6,6 @@ class Member < ApplicationRecord
 
   has_many :posts
   has_many :comments
+
+  validates :username, uniqueness: true
 end

@@ -5,7 +5,7 @@
         <% end %>
             <span class="subtitle">Created by:&nbsp;
                 <% if member_signed_in? %>
-                    <%= link_to post.member.email, "#" %>
+                    <%= link_to post.member.username, "#" %>
                 <% else %>
                     Anonymous
                 <% end %>
