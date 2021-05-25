@@ -7,10 +7,36 @@
     <%= csp_meta_tag %>
 
     <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <script src="https://kit.fontawesome.com/bcdbdb9739.js" crossorigin="anonymous"></script>
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
 
   <body>
+    <% flash.each do |type, message| %>
+      <div class="notification <%= type == "notice" ? "is-success" : "is-danger" %>"><%= message %></div>
+    <% end %>
+
+    <nav class="navbar is-info">
+      <div class="navbar-brand">
+      <%= link_to root_path, class: "navbar-item" do %>
+      <h1 class="title is-3">Members Only</h1>
+      <% end %>
+      </div>
+      <div class="navbar-end">
+      <div class="navbar-item">
+      <div class="buttons">
+        <% if member_signed_in? %>
+          <%= link_to "Post", new_post_path, class: "button is-primary" %>
+          <%= link_to current_member.email, "#", class: "button is-light" %>
+          <%= link_to "Sign out", destroy_member_session_path, method: :delete, class: "button is-info is-light" %>
+        <% else %>
+            <%= link_to "Sign in", new_member_session_path, class: "button is-primary" %>
+            <%= link_to "Sign up", new_member_registration_path, class: "button is-light" %>
+        <% end %>
+        </div>
+      </div>
+      </div>
+    </nav>
     <%= yield %>
   </body>
 </html>

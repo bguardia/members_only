@@ -1,0 +1,9 @@
+<section class="section">
+    <div class="columns">
+        <div class="column is-half is-offset-one-quarter">
+        <% @posts.each do |post| %>
+            <%= render 'posts/post', post: post %>
+        <% end %>
+        </div>
+    </div>
+</section>

@@ -1,0 +1,46 @@
+<div class="box">
+    <div class="block">
+        <%= link_to post_path(post) do %>
+            <h2 class="title"><%= post.title %></h2>
+        <% end %>
+            <span class="subtitle">Created by:&nbsp;
+                <% if member_signed_in? %>
+                    <%= link_to post.member.email, "#" %>
+                <% else %>
+                    Anonymous
+                <% end %>
+                &nbsp; <small><%= time_ago_in_words(post.created_at) + " ago" %></small>
+            </span>
+    </div>
+
+    <div class="block"><%= post.body %></div>
+
+    <% if member_signed_in? %>
+        <div class="level">
+            <div class="level-item">
+                <%= link_to "#" do %>
+                    <span class="icon"><i class="far fa-thumbs-up"></i></span>
+                <% end %>
+            </div>
+            <div class="level-item">
+                <%= link_to "#" do %>
+                    <span class="icon"><i class="far fa-comment-alt"></i></span>
+                <% end %>
+            </div>
+            <% if post.member == current_member %>
+                <div class="level-item">
+                    <%= link_to edit_post_path(post) do %>
+                        <span class="icon"><i class="far fa-edit"></i></span>
+                    <% end %>
+                </div>
+                <div class="level-item">
+                    <%= link_to post_path(post), method: :delete do %>
+                        <span class="icon"><i class="far fa-trash-alt"></i></span>
+                    <% end %>
+                </div>
+           <% end %>
+        </div> 
+    <% end %>
+
+    
+</div>
