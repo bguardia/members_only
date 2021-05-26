@@ -1,9 +1,11 @@
 <div class="media">
     <div class="media-content">
-        <%= comment.body %>
-    </div>
-    <div class="block">
-        <small>Created by <%= comment.member&.username %></small>
+        <small>
+            <%= member_signed_in? ? comment.member.username : "Anonymous" %>&nbsp;says: 
+        </small>
+        <p>
+            <%= comment.body %>
+        </p>
     </div>
     <% if member_signed_in? && comment.member == current_member %>
         <div class="panel-block level">
