@@ -3,21 +3,25 @@
         <%= link_to post_path(post) do %>
             <h2 class="title"><%= post.title %></h2>
         <% end %>
-            <span class="subtitle">Created by:&nbsp;
+            <small>Created by&nbsp;
                 <%= member_signed_in? ? post.member.username : "Anonymous" %>
                 &nbsp; <small><%= time_ago_in_words(post.created_at) + " ago" %></small>
-            </span>
+            </small>
     </div>
 
     <% if local_assigns.has_key? :snippet %>
-      <div class="panel-block"><%= post.snippet(400) %></div>
+      <div class="panel-block"><%= display_line_breaks post.snippet(400) %></div>
       <% if post.longer_than?(400) %>
         <div class="level panel-block">
             <%= link_to "More", post_path(post), class: "level-item" %>
         </div>
       <% end %>
     <% else %>
-      <div class="panel-block"><%= post.body %></div>
+      <div class="panel-block">
+      <p>
+      <%= display_line_breaks post.body %>
+      </p>
+      </div>
     <% end %>
 
     <% if member_signed_in? %>
