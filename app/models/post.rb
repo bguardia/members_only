@@ -8,7 +8,7 @@ class Post < ApplicationRecord
     def snippet(len = 200)
 
       if longer_than?(len)
-        body[0...(len - 3)] + "..."
+        body[0...len]
       else
         body
       end

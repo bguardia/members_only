@@ -16,9 +16,14 @@
 
  @import "bulma";
 
-
+/*
  .navbar-item .title {
      color: $white-ter;
+ } */
+
+ .top-nav {
+     border-bottom: solid 1px $grey-lighter;
+     box-shadow: 0px 2px 5px $grey-lightest;
  }
 
  .notification:not(:last-child) {

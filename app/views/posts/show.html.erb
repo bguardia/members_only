@@ -3,7 +3,7 @@
 <div class="column is-half is-offset-one-quarter">
   <%= render 'posts/post', post: @post %>
   <div class="box" id="comment">
-  <h3>Leave a comment</h3>
+  <h2 class="title is-4">Leave a comment</h2>
   <%= render 'comments/form', comment: @post.comments.build %>
   </div>
 </div>

@@ -10,21 +10,22 @@
     </div>
 
     <% if local_assigns.has_key? :snippet %>
-      <div class="panel-block"><%= display_line_breaks post.snippet(400) %></div>
-      <% if post.longer_than?(400) %>
-        <div class="level panel-block">
-            <%= link_to "More", post_path(post), class: "level-item" %>
-        </div>
-      <% end %>
+      <div class="panel-block">
+        <p>
+        <%= display_line_breaks post.snippet(400) %>
+        <% if post.longer_than?(400) %>
+            <%= link_to "...", post_path(post) %>
+        <% end %>
+        </p>
+      </div>
     <% else %>
       <div class="panel-block">
-      <p>
-      <%= display_line_breaks post.body %>
-      </p>
+        <p>
+            <%= display_line_breaks post.body %>
+        </p>
       </div>
     <% end %>
 
-    <% if member_signed_in? %>
         <div class="level panel-block">
             <div class="level-item">
                 <%= link_to "#" do %>
@@ -37,7 +38,7 @@
                     &nbsp;<%= post.comments.count %>
                 <% end %>
             </div>
-            <% if post.member == current_member %>
+            <% if member_signed_in? && post.member == current_member %>
                 <div class="level-item">
                     <%= link_to edit_post_path(post) do %>
                         <span class="icon"><i class="far fa-edit"></i></span>
@@ -50,7 +51,7 @@
                 </div>
            <% end %>
         </div> 
-    <% end %>
+    
 
     <% unless local_assigns.has_key? :snippet %>
         <% post.comments.each do |cmt| %>
