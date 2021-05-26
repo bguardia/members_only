@@ -32,8 +32,9 @@
                 <% end %>
             </div>
             <div class="level-item">
-                <%= link_to "#" do %>
+                <%= link_to post_path(post) + "#comment" do %>
                     <span class="icon"><i class="far fa-comment-alt"></i></span>
+                    &nbsp;<%= post.comments.count %>
                 <% end %>
             </div>
             <% if post.member == current_member %>
@@ -51,5 +52,10 @@
         </div> 
     <% end %>
 
+    <% unless local_assigns.has_key? :snippet %>
+        <% post.comments.each do |cmt| %>
+            <%= render '/comments/comment', comment: cmt %>
+        <% end %>
+    <% end %>
     
 </div>

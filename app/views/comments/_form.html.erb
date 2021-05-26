@@ -1,0 +1,24 @@
+<% if member_signed_in? %>
+<p>
+Commenting as <%= current_member.username %>
+</p>
+<% else %>
+<p>
+<%= link_to "Sign in", new_member_session_path %> or <%= link_to "Sign up", new_member_registration_path %> to comment
+</p>
+<% end %>
+<%= form_with model: [comment.post, comment] do |form| %>
+    <div class="field">
+        <div class="control">
+            <%= form.label :body, class: "label" %>
+            <%= form.text_area :body, class: "input" %>
+            <% comment.errors.full_messages_for(:body).each do |message| %>
+            <p class="help is-danger">
+            <%= message %>
+            </p>
+            <% end %>
+        </div>
+    </div>
+
+    <%= form.submit "Create comment" %>
+<% end %>
