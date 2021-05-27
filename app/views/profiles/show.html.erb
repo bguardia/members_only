@@ -28,7 +28,7 @@
                                 <small>Joined <%= time_ago_in_words(@member.created_at)%> ago</small>
                             </p>
                            
-                            <p class="block"><%= @member.profile.bio %></p>
+                            <p class="block"><%= @member.profile&.bio %></p>
                         </div>
                     </article>
                 </div>
@@ -51,9 +51,20 @@
                 </div>
             </div>
 
+            <% if !@member.posts.empty? %>
+                <% @member.posts.each do |post| %>
+                    <%= render '/posts/post', post: post %>
+                <% end %>
+            <% else %>
+            <div class="block">
+            <div class="level">
+            <div class="level-item  has-text-centered">
+                <span>No posts from this member...yet.</span>
+            </div>
             
-            <% @member.posts.each do |post| %>
-                <%= render '/posts/post', post: post %>
+            </div>
+            </div>
+                
             <% end %>
            
         </div>
