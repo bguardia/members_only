@@ -8,7 +8,7 @@ Rails.application.routes.draw do
     resources :comments, except: [:new, :show, :index]
   end
 
-  resources :profiles, only: [:show, :create, :edit]
+  resources :profiles, only: [:show, :edit, :update]
 
   root to: "posts#index"
 end
