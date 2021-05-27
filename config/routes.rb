@@ -6,5 +6,7 @@ Rails.application.routes.draw do
     resources :comments, except: [:new, :show, :index]
   end
 
+  resources :profiles, only: [:show, :create, :edit]
+
   root to: "posts#index"
 end
