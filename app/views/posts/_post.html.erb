@@ -4,7 +4,11 @@
             <h2 class="title"><%= post.title %></h2>
         <% end %>
             <small>Created by&nbsp;
-                <%= member_signed_in? ? post.member.username : "Anonymous" %>
+            <% if member_signed_in? %>
+                <%= link_to post.member.username, profile_path(post.member) %>
+            <% else %>
+                Anonymous
+            <% end %>
                 &nbsp; <small><%= time_ago_in_words(post.created_at) + " ago" %></small>
             </small>
     </div>

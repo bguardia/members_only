@@ -1,72 +1,68 @@
 <section class="section">
     <div class="columns">
-        <div class="column is-half is-offset-one-quarter">
-            <div class="panel">
-                <div class="panel-heading is-primary">
-                    <div class="level">
-                        <div class="level-left">
-                            Profile
-                        </div>
-                        <% if member_signed_in? && @member == current_member %>
-                        <div class="level-right">
-                          <%= link_to edit_profile_path(@member) do %>
-                            <span class="icon"><i class="far fa-edit"></i></span>
-                          <% end %>
-                        </div>
-                        <% end %>
+        <div class="column is-one-quarter">
+
+            <div class="box">
+                <div class="block">
+                    <div class="image is-square is-fullwidth">
+                        <img src="https://via.placeholder.com/128" alt="">
                     </div>
                 </div>
 
-                <div class="panel-block">
-                    <article class="media">
-                        <div class="media-left">
-                            <img class="image is-64x64" src="https://via.placeholder.com/64" alt="">
+                <div class="block">
+                    <div class="level">
+                        <div class="level-left">
+                            <div>
+                                <strong class="title is-4"><%= member_signed_in? ? @member.username : "anonymous" %></strong><br />
+                                <small>Joined <%= time_ago_in_words(@member.created_at) %> ago</small>
+                            </div>
                         </div>
-                        <div class="media-right">
-                            <p class="block">
-                                <strong><%=@member.username %></strong><br />
-                                <small>Joined <%= time_ago_in_words(@member.created_at)%> ago</small>
-                            </p>
-                           
-                            <p class="block"><%= @member.profile&.bio %></p>
-                        </div>
-                    </article>
+
+                        <% if member_signed_in? && @member == current_member %>
+                            <div class="level-right">
+                                <%= link_to edit_profile_path(@member) do %>
+                                    <span class="icon"><i class="far fa-edit"></i></span>
+                                <% end %>
+                            </div>
+                        <% end %>
+                    </div>
+                    
+                    <p><%= @member.profile&.bio %></p>
                 </div>
 
-                <div class="panel-block level">
-                <div class="level-item has-text-centered">
-                <div>
-                <p class="heading">Posts</p>
-                <p class="title is-6"><%= @member.posts.count %></p>
-                </div>
-                
-                </div>
-                <div class="level-item has-text-centered">
-                <div>
-                <p class="heading">Comments</p>
-                <p class="title is-6"><%= @member.comments.count %></p>
-                </div>
-                
-                </div>
+                <div class="block level">
+                    <div class="level-item has-text-centered">
+                        <div>
+                            <p class="heading">Posts</p>
+                            <p class="title is-6"><%= @member.posts.count %></p>
+                        </div>
+                    </div>
+
+                    <div class="level-item has-text-centered">
+                        <div>
+                            <p class="heading">Comments</p>
+                            <p class="title is-6"><%= @member.comments.count %></p>
+                        </div>
+                    </div>
                 </div>
             </div>
+        </div>
 
+
+        <div class="column is-half">
+        
+            <h2 class="title is-3">Posts by <%= member_signed_in? ? @member.username : "anonymous" %></h2>
+            
             <% if !@member.posts.empty? %>
                 <% @member.posts.each do |post| %>
                     <%= render '/posts/post', post: post %>
                 <% end %>
             <% else %>
-            <div class="block">
-            <div class="level">
-            <div class="level-item  has-text-centered">
-                <span>No posts from this member...yet.</span>
-            </div>
-            
-            </div>
-            </div>
-                
+                <div class="box">
+                    <p>No posts from this member...yet.</p>
+                </div> 
             <% end %>
-           
         </div>
+        
     </div>
 </section>
