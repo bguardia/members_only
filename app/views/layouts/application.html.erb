@@ -26,7 +26,7 @@
         <div class="navbar-item">
           <div class="buttons">
             <% if member_signed_in? %>
-              <%= link_to "Post", new_post_path, class: "button is-primary" %>
+              <%= link_to "Post", new_post_path, class: "button is-primary is-light" %>
               <%= link_to current_member.username, profile_path(current_member), class: "button is-light" %>
               <%= link_to "Sign out", destroy_member_session_path, method: :delete, class: "button is-info is-light" %>
             <% else %>
@@ -37,7 +37,7 @@
         </div>
       </div>
     </nav>
-    
+
     <%= yield %>
   </body>
 </html>
