@@ -1,24 +1,21 @@
 # README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+<h1>Members Only</h1>
 
-Things you may want to cover:
+<p>Members Only is a simple web application built in Ruby on Rails as part of the Odin Project.</p>
 
-* Ruby version
+<p>Members can create posts and comments to share on the platform. Non-members can read posts and comments, but cannot see the names of the members who posted them.</p>
 
-* System dependencies
+<h2>Features</h2>
 
-* Configuration
+<ul>
+    <li>Members can create, edit and delete (their own) posts</li>
+    <li>Members can create, edit and delete (their own) comments on other posts</li>
+    <li>Members can edit their profile biography</li>
+    <li>Members can upload profile pictures</li>
+    <li>Members can like or unlike posts</li>
+    <li>Non-members can read posts and comments</li>
+    <li>Non-members <strong>cannot</strong> see member names or profile pictures</li>
+</ul>
 
-* Database creation
 
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
