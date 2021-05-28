@@ -6,6 +6,13 @@
                 <%= form_with model: @profile do |form| %>
                     <div class="field">
                         <div class="control">
+                            <%= form.label :picture, class: "label" %>
+                            <%= form.file_field :picture %>
+                        </div>
+                    </div>
+                    
+                    <div class="field">
+                        <div class="control">
                             <%= form.label :bio, class: "label" %>
                             <%= form.text_area :bio, class: "input" %>
                         </div>

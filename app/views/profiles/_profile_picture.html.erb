@@ -1,0 +1,5 @@
+<% if member_signed_in? && profile.picture.attached? %>
+    <img src="<%= url_for(profile.picture) %>" alt="">
+<% else %>
+    <%= image_tag 'profile_picture.jpg' %>
+<% end %> 
