@@ -32,8 +32,16 @@
 
         <div class="level panel-block">
             <div class="level-item">
-                <%= link_to "#" do %>
-                    <span class="icon"><i class="far fa-thumbs-up"></i></span>
+                <% if member_signed_in? && current_member.likes.exists?(post_id: post.id) %>
+                    <%= link_to unlike_post_path(post), method: :delete, remote: true, class: "unlike_link", data: { post_id: post.id } do %>
+                        <span class="icon"><i class="fas fa-thumbs-up"></i></span>&nbsp;
+                        <%= post.likes.count %>
+                    <% end %>
+                <% else %>
+                    <%= link_to like_post_path(post), method: :post, remote: true, class: "like_link", data: { post_id: post.id } do %>
+                        <span class="icon"><i class="far fa-thumbs-up"></i></span>&nbsp;
+                        <%= post.likes.count %>
+                    <% end %>
                 <% end %>
             </div>
             <div class="level-item">

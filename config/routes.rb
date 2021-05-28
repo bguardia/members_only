@@ -6,6 +6,10 @@ Rails.application.routes.draw do
 
   resources :posts do
     resources :comments, except: [:new, :show, :index]
+      member do
+        post 'like'
+        delete 'unlike'
+      end
   end
 
   resources :profiles, only: [:show, :edit, :update]

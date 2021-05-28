@@ -1,5 +1,5 @@
 class PostsController < ApplicationController
-    before_action :authenticate_member!, only: [:new, :create, :edit, :destroy]
+    before_action :authenticate_member!, only: [:new, :create, :edit, :destroy, :like, :unlike]
 
     def index
       @posts = Post.all.order("created_at DESC")
@@ -64,6 +64,17 @@ class PostsController < ApplicationController
             flash[:notice] = "Post successfuly deleted"
         end
       redirect_to root_url
+    end
+
+    def like
+        @post = Post.find_by(id: params[:id])
+        Like.create(post_id: @post.id, member_id: current_member.id)
+    end
+
+    def unlike
+        @post = Post.find_by(id: params[:id])
+        @like = current_member.likes.find_by(post_id: @post.id)
+        @like&.destroy
     end
 
     private
