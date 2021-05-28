@@ -27,18 +27,21 @@ function toggleLike(el){
 
   els.forEach((element)=>{
     let like_icon = element.getElementsByTagName("i")[0];
+    let like_counter = element.getElementsByClassName("like-count")[0];
     if(element.className.indexOf("unlike_link") >= 0){
       element.className = element.className.replace("unlike_link", "like_link");
       element.setAttribute("data-method", "post");
       element.setAttribute("href", "/posts/"+post_id+"/like")
       //element.setAttribute("data-params", "post_id="+post_id);
       like_icon.className = like_icon.className.replace("fas", "far");
+      like_counter.innerHTML = Number(like_counter.innerHTML) - 1;
     }else{
       element.className = element.className.replace("like_link", "unlike_link");
       element.setAttribute("data-method", "delete");
       element.setAttribute("href", "/posts/"+post_id+"/unlike");
       //element.setAttribute("data-params", "");
       like_icon.className = like_icon.className.replace("far", "fas");
+      like_counter.innerHTML = Number(like_counter.innerHTML) + 1;
   }});
   
 }
